@@ -30,7 +30,7 @@ def take_info():
 
 
 def load_args(data) -> str:
-    s = 'notion-export-prettify '
+    s = 'python3 notion-export-prettify/main.py '
 
     # save file
     local_save = 'temp_save.zip'
@@ -101,7 +101,7 @@ def run_job():
 
 if __name__ == '__main__':
     # Headers
-    logo_path = "/Users/shivankjoshi/Desktop/Screenshot 2024-09-16 at 10.47.23 AM.png"
+    logo_path = "iseed_logo.png"
     st.image(logo_path, width=250)
     st.title("iSeed Deal Memo Printer")
     st.subheader("Exported Notion HTML :arrow_right: Pretty PDF")
