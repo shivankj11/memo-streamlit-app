@@ -119,7 +119,7 @@ def main():
                 title_block = HtmlTemplator(header_template).inject(metadata).html
                 manipulator.inject_title_block(title_block)
             else:
-                orange("[SKIP] No HTML title template found. Keeping original header")
+            orange("[SKIP] No HTML title template found. Keeping original header")
 
         # 1.x. - Save to file
         updated_html_path = path.join(temp_dir, "updated_doc.html")

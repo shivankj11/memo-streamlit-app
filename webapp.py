@@ -25,6 +25,8 @@ def take_info():
         st.text_input("Title of Output PDF",
             value="Company: Investment Memo", key='output title')
         st.checkbox("Cover Page?", value=True, key='cover page')
+        st.text_input("Template",
+            value="Deal_Memo_Standard", key='template')
     
     return cols
 
@@ -47,11 +49,14 @@ def load_args(data) -> str:
 
     s += '--title \"' + st.session_state['output title'] + '\" '
 
+    s += '--template \"' + st.session_state['template'] + '\" '
+
     if st.session_state['cover page']:
         s += '--cover-page '
     else:
         s += '--no-cover-page '
 
+    print(s)
     return s, local_save, output_file
 
 
