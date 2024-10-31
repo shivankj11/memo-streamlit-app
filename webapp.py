@@ -32,7 +32,7 @@ def take_info():
 
 
 def load_args(data) -> str:
-    s = 'python3 notion-export-prettify/main.py '
+    s = 'notion-export-prettify '
 
     # save file
     local_save = 'temp_save.zip'
@@ -61,7 +61,8 @@ def load_args(data) -> str:
 
 
 def run_notion_export(cmd):
-    proc = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, capture_output=False)
+    return proc
 
 
 def run_job():
@@ -96,7 +97,7 @@ def run_job():
     with open(output_file, 'rb') as f:
         b = f.read()
     st.download_button(
-        label="DOWNLOAD!",
+        label="Download",
         data=b,
         file_name=output_file,
         key='download output'
