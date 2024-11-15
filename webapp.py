@@ -32,7 +32,7 @@ def take_info():
 
 
 def load_args(data) -> str:
-    s = 'notion-export-prettify '
+    s = 'notion-export-prettify/main.py '
 
     # save file
     local_save = 'temp_save.zip'
