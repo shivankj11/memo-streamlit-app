@@ -27,7 +27,7 @@ def take_info():
         st.checkbox("Cover Page?", value=True, key='cover page')
         st.text_input("Template",
             value="Deal_Memo_Standard", key='template')
-    
+
     return cols
 
 
@@ -84,11 +84,13 @@ def run_job():
     cmd, local_save, output_file = load_args(file)
     sleep(0.4)
 
-    progress_bar.progress(50, text="Running bash script")
+    progress_bar.progress(70, text="Running bash script")
     res = run_notion_export(cmd)
+    sleep(0.4)
 
     progress_bar.progress(80, text="Collecting results")
-    sleep(0.4)
+    with open(output_file, "wb") as outputfile:
+        process = subprocess.run(cmd, stdout=outputfile, shell=True, check=True)
 
     # delete temp files and widgets
     os.remove("temp_save.zip")
@@ -102,7 +104,9 @@ def run_job():
         file_name=output_file,
         key='download output'
     )
-    cols[0].empty()
+    # Clear widgets in the first column
+    # for widget in cols[0]._widgets:
+    #     widget.empty()
 
 
 if __name__ == '__main__':
@@ -110,7 +114,8 @@ if __name__ == '__main__':
     logo_path = "iseed_logo.png"
     st.image(logo_path, width=250)
     st.title("iSeed Deal Memo Printer")
-    st.subheader("Exported Notion HTML :arrow_right: Pretty PDF")
+    st.subheader("Exported Notion HTML :arrow_right: Pretty PDF\n\
+        Any text with heading 'internal' (case insensitive) will be scrubbed")
     st.write("")
 
     # Setup app

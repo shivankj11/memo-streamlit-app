@@ -4,3 +4,5 @@
 
 1. Run `webapp.py` with streamlit
 2. Use [webapp](https://iseed-memo.streamlit.app/) (running on streamlit public cloud)
+
+*Any text with heading 'internal' (case insensitive) will be scrubbed*

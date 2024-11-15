@@ -98,3 +98,5 @@ class PdfMaker:
         if not output_pdf_path:
             output_pdf_path = self.output_path
         self.pdf_doc.save(output_pdf_path)
+
+        return self.pdf_doc.tobytes()

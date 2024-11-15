@@ -1,4 +1,5 @@
 from os import path, listdir
+import sys
 import logging
 import shutil
 import tempfile
@@ -193,8 +194,9 @@ def main():
             # Save in the same directory as the input with the title as filename
             output_file = path.join(path.dirname(args.input_file), filename)
 
-        pdf_maker.save(output_file)
-
+        bytes = pdf_maker.save(output_file)
+        sys.stdout.write(bytes)
+        
         green("PDF generated at %s" % output_file)
 
 
