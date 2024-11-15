@@ -1,6 +1,6 @@
 import streamlit as st
 import hmac
-import os, time, subprocess, asyncio
+import os, time, subprocess, asyncio, sys
 from time import sleep
 
 st.set_page_config(
@@ -32,6 +32,7 @@ def take_info():
 
 
 def load_args(data) -> str:
+
     s = 'notion-export-prettify '
 
     # save file
@@ -86,12 +87,12 @@ def run_job():
     sleep(0.4)
 
     progress_bar.progress(70, text="Running bash script")
-    res = run_notion_export(cmd)
+    # res = run_notion_export(cmd)
     sleep(0.4)
 
     progress_bar.progress(80, text="Collecting results")
     with open(output_file, "wb") as outputfile:
-        process = subprocess.run(cmd, stdout=outputfile, shell=True, check=True)
+        process = subprocess.run(f"{sys.executable}" + '/' + cmd, stdout=outputfile, shell=False, check=False)
 
     # delete temp files and widgets
     os.remove("temp_save.zip")
