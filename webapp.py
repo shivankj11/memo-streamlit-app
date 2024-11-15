@@ -32,7 +32,7 @@ def take_info():
 
 
 def load_args(data) -> str:
-    s = 'notion-export-prettify/main.py '
+    s = 'notion-export-prettify '
 
     # save file
     local_save = 'temp_save.zip'
@@ -61,6 +61,7 @@ def load_args(data) -> str:
 
 
 def run_notion_export(cmd):
+    subprocess.run('pip install notion-export-prettify', shell=True)
     proc = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, capture_output=False)
     return proc
 
