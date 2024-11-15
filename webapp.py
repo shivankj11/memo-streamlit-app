@@ -91,8 +91,8 @@ def run_job():
     sleep(0.4)
 
     progress_bar.progress(80, text="Collecting results")
-    with open(output_file, "wb") as outputfile:
-        process = subprocess.run([f"{sys.executable}", cmd], stdout=outputfile, shell=False, check=False)
+    # with open(output_file, "wb") as outputfile:
+    process = subprocess.run([f"{sys.executable}", cmd], shell=False, check=True, stderr=subprocess.PIPE)
 
     # delete temp files and widgets
     os.remove("temp_save.zip")
