@@ -63,7 +63,7 @@ def load_args(data) -> str:
 
 def run_notion_export(cmd):
     subprocess.run('pip install notion-export-prettify', shell=True)
-    proc = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, capture_output=False)
+    proc = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, capture_output=False, check=True)
     return proc
 
 
@@ -95,14 +95,14 @@ def run_job():
     # process = subprocess.run([f"{sys.executable}", cmd], shell=False, check=True, stderr=subprocess.PIPE)
 
     # delete temp files and widgets
-    os.remove("temp_save.zip")
+    os.remove(local_save)
     progress_bar.empty()
     st.success(f'Output file: {output_file}')
-    with open(output_file, 'rb') as f:
-        b = f.read()
+    # with open(output_file, 'rb') as f:
+    #     b = f.read()
     st.download_button(
         label="Download",
-        data=b,
+        data=open(output_file),
         file_name=output_file,
         key='download output'
     )
