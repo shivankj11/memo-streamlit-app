@@ -63,7 +63,7 @@ def load_args(data) -> str:
 
 def run_notion_export(cmd):
     subprocess.run('pip install notion-export-prettify', shell=True)
-    proc = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, capture_output=True, check=True)
+    proc = subprocess.run(cmd, shell=True, capture_output=True, check=True)
     return proc
 
 
@@ -102,7 +102,7 @@ def run_job():
     #     b = f.read()
     st.download_button(
         label="Download",
-        data=open(output_file),
+        data=open(output_file, 'rb'),
         file_name=output_file,
         key='download output'
     )
