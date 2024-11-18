@@ -87,12 +87,12 @@ def run_job():
     sleep(0.4)
 
     progress_bar.progress(70, text="Running bash script")
-    # res = run_notion_export(cmd)
+    res = run_notion_export(cmd)
     sleep(0.4)
 
     progress_bar.progress(80, text="Collecting results")
     # with open(output_file, "wb") as outputfile:
-    process = subprocess.run([f"{sys.executable}", cmd], shell=False, check=True, stderr=subprocess.PIPE)
+    # process = subprocess.run([f"{sys.executable}", cmd], shell=False, check=True, stderr=subprocess.PIPE)
 
     # delete temp files and widgets
     os.remove("temp_save.zip")

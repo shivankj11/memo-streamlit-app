@@ -194,9 +194,9 @@ def main():
             # Save in the same directory as the input with the title as filename
             output_file = path.join(path.dirname(args.input_file), filename)
 
-        bytes = pdf_maker.save(output_file)
-        sys.stdout.flush()
-        sys.stdout.buffer.write(bytes)
+        # bytes = pdf_maker.save(output_file)
+        # sys.stdout.flush()
+        # sys.stdout.buffer.write(bytes)
         
         green("PDF generated at %s" % output_file)
 
