@@ -1,7 +1,11 @@
 import streamlit as st
-import hmac
+import hmac, sys
+from pathlib import Path
 import os, time, subprocess, asyncio
 from time import sleep
+dir_name = Path.cwd()
+print(dir_name)
+os.environ['PATH'] += ':' + str(dir_name)
 
 st.set_page_config(
     page_title="iSeed Doc Export",
@@ -27,12 +31,10 @@ def take_info():
         st.checkbox("Cover Page?", value=True, key='cover page')
         st.text_input("Template",
             value="Deal_Memo_Standard", key='template')
-    
-    return cols
 
 
 def load_args(data) -> str:
-    s = 'python3 notion-export-prettify/main.py '
+    s = 'notion-export-prettify '
 
     # save file
     local_save = 'temp_save.zip'
@@ -61,11 +63,17 @@ def load_args(data) -> str:
 
 
 def run_notion_export(cmd):
-    proc = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+
+
+def cleanup(local_save, output_file):
+    os.remove(local_save)
+    os.remove(output_file)
+    for key in st.session_state.keys():
+        del st.session_state[key]
 
 
 def run_job():
-    global cols
     progress_bar = st.progress(0, text="Processing...")
     sleep(0.3)
 
@@ -90,7 +98,6 @@ def run_job():
     sleep(0.4)
 
     # delete temp files and widgets
-    os.remove("temp_save.zip")
     progress_bar.empty()
     st.success(f'Output file: {output_file}')
     with open(output_file, 'rb') as f:
@@ -99,9 +106,10 @@ def run_job():
         label="DOWNLOAD!",
         data=b,
         file_name=output_file,
-        key='download output'
+        key='download output',
+        on_click=cleanup, args=(local_save, output_file)
     )
-    cols[0].empty()
+    
 
 
 if __name__ == '__main__':
@@ -113,4 +121,4 @@ if __name__ == '__main__':
     st.write("")
 
     # Setup app
-    cols = take_info()
+    take_info()
