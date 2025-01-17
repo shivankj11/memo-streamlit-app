@@ -1,7 +1,5 @@
 from os import path, listdir
 import os
-path = os.path.dirname(__file__)
-os.chdir(path)
 import logging
 import shutil
 import tempfile
@@ -196,7 +194,7 @@ def main():
             # Save in the same directory as the input with the title as filename
             output_file = path.join(path.dirname(args.input_file), filename)
 
-        pdf_maker.save(output_file)
+        # pdf_maker.save(output_file)
 
         green("PDF generated at %s" % output_file)
 
