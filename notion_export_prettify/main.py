@@ -1,4 +1,7 @@
 from os import path, listdir
+import os
+path = os.path.dirname(__file__)
+os.chdir(path)
 import logging
 import shutil
 import tempfile
