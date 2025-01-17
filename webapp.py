@@ -1,6 +1,8 @@
 import streamlit as st
 from pathlib import Path
 import os, time, subprocess, asyncio
+path = os.path.dirname(__file__)
+os.chdir(path)
 from time import sleep
 dir_name = Path.cwd()
 print(dir_name)
