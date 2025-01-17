@@ -12,6 +12,8 @@ from .resource_loader import ResourceLoader
 from .html_templator import HtmlTemplator
 from .print_color import red, green, orange
 
+path = os.path.dirname(__file__)
+os.chdir(os.path.dirname(path))
 logging.basicConfig(level=logging.DEBUG)
 logging.getLogger("asyncio").setLevel(logging.WARNING)
 
