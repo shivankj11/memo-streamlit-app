@@ -1,5 +1,4 @@
 import streamlit as st
-import hmac, sys
 from pathlib import Path
 import os, time, subprocess, asyncio
 from time import sleep
@@ -103,7 +102,7 @@ def run_job():
     with open(output_file, 'rb') as f:
         b = f.read()
     st.download_button(
-        label="DOWNLOAD!",
+        label="Download!",
         data=b,
         file_name=output_file,
         key='download output',

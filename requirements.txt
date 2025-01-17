@@ -1,1 +1,7 @@
-streamlit
+PyMuPDF==1.24.11
+playwright==1.47.0
+colorama==0.4.6
+beautifulsoup4==4.12.3
+Jinja2==3.1.4
+streamlit==1.39.0
+streamlit-pdf-viewer==0.0.18
